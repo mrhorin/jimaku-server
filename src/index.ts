@@ -1,3 +1,3 @@
 import JimakuServer from 'jimaku_server'
 
-var server = new JimakuServer()
+const server: JimakuServer = new JimakuServer()

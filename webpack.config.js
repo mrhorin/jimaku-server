@@ -16,7 +16,8 @@ module.exports = {
   plugins: [
     new WebpackNotifierPlugin(),
   ],
-  externals: [ nodeExternals() ],
+  externals: [nodeExternals()],
+  devtool: "source-map",
   module: {
     rules: [
       {
