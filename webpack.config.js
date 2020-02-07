@@ -3,7 +3,8 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const nodeExternals = require('webpack-node-externals');
 
 const server  = {
-  mode: 'development',
+  target: 'node',
+  mode: 'production',
   devtool: 'inline-source-map',
   entry: './src/server/index.ts',
   output: {
@@ -16,7 +17,6 @@ const server  = {
   },
   node: {
     __dirname: false,
-    __filename: false
   },
   plugins: [
     new WebpackNotifierPlugin(),
@@ -34,9 +34,8 @@ const server  = {
 };
 
 const client  = {
-  mode: 'development',
-  target: "web",
-  devtool: 'inline-source-map',
+  target: 'web',
+  mode: 'production',
   entry: './src/client/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -49,7 +48,6 @@ const client  = {
   plugins: [
     new WebpackNotifierPlugin(),
   ],
-  externals: [nodeExternals()],
   module: {
     rules: [
       {

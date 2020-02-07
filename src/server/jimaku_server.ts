@@ -4,12 +4,14 @@ import io from 'socket.io'
 import path from 'path'
 
 export default class JimakuServer{
-  app: express.Express
-  server: http.Server
-  io: io.Server
+  private app: express.Express
+  private server: http.Server
+  private io: io.Server
 
   constructor() {
     this.app = express()
+    this.server = new http.Server(this.app)
+    this.io = io(this.server)
     this.app.get('/', (req: express.Request, res: express.Response) => {
       res.send(`
         <html>
@@ -26,17 +28,16 @@ export default class JimakuServer{
     this.app.get('/client.js', (req: express.Request, res: express.Response) => {
       res.sendFile(path.resolve(__dirname + '/client.js'))
     })
-    this.server = this.app.listen(3000)
-    this.io = io(this.server)
-    // this.io.on('connection', (socket: io.Socket) => {
-    // })
+    this.io.on('connection', (socket: io.Socket) => {
+      console.log('a user connected')
+    })
   }
 
-  listen(port: number) {
+  public listen(port: number) {
     this.server = this.server.listen(port)
   }
 
-  close() {
+  public close() {
     this.server = this.server.close()
   }
 
