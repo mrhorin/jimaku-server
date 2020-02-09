@@ -13,7 +13,7 @@ const server  = {
   },
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    extensions: ['.ts'],
+    extensions: ['.ts', '.js'],
   },
   node: {
     __dirname: false,
@@ -43,7 +43,7 @@ const client  = {
   },
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    extensions: ['.ts'],
+    extensions: ['.ts', '.js'],
   },
   plugins: [
     new WebpackNotifierPlugin(),
