@@ -11,8 +11,8 @@ export default class JimaluClient{
     this.io.on('connect', () => {
       console.log('connect')
     })
-    this.io.on('show_jimaku', (jimaku: string) => {
-      this.showJimaku(jimaku)
+    this.io.on('show_jimaku', (jimaku: string, style?: { [key: number]: string; }) => {
+      this.showJimaku(jimaku, style)
     })
     this.io.on('hide_jimaku', (jimaku: string) => {
       this.hideJimaku()
@@ -32,8 +32,11 @@ export default class JimaluClient{
     this.client.connect()
   }
 
-  public showJimaku(jimaku: string) {
+  public showJimaku(jimaku: string, style: { [key: number]: string } = {}) {
     if (this.jimakuElement?.innerHTML) {
+      let css: string = ""
+      for (let key in style) { css += `${key}: ${style[key]};` }
+      this.jimakuElement.setAttribute('style', css)
       this.jimakuElement.innerHTML = jimaku
     }
   }

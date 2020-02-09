@@ -33,7 +33,7 @@ export default class JimakuServer{
     })
   }
 
-  get isListening(): boolean {
+  public get isListening(): boolean {
     return this.server.listening
   }
 
@@ -45,8 +45,8 @@ export default class JimakuServer{
     this.server = this.server.close()
   }
 
-  public showJimaku(jimaku: string) {
-    this.io.emit('show_jimaku', jimaku)
+  public showJimaku(jimaku: string, style?: { [key: string]: string }) {
+    this.io.emit('show_jimaku', jimaku, style)
   }
 
   public hideJimaku() {
