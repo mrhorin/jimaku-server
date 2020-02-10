@@ -36,6 +36,7 @@ const server  = {
 const client  = {
   target: 'web',
   mode: 'production',
+  devtool: 'inline-source-map',
   entry: './src/client/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
