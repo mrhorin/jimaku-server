@@ -28,7 +28,21 @@ export default class JimakuServer{
     this.app.get('/client.js', (req: express.Request, res: express.Response) => {
       res.sendFile(path.resolve(__dirname + '/client.js'))
     })
-    this.io.on('connection', (socket: io.Socket) => {
+    this.app.get('/show_jimaku', (req: express.Request, res: express.Response) => {
+      let jimaku = decodeURIComponent(req.query.jimaku)
+      if (req.query.style) {
+        let style = JSON.parse(req.query.style)
+        this.showJimaku(jimaku, style)
+      } else {
+        this.showJimaku(jimaku)
+      }
+      res.end()
+    })
+    this.app.get('/hide_jimaku', (req: express.Request, res: express.Response) => {
+      this.hideJimaku()
+      res.end()
+    })
+    this.io.on('connection', () => {
       console.log('a user connected')
     })
   }
