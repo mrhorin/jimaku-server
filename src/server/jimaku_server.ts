@@ -29,14 +29,32 @@ export default class JimakuServer{
       res.sendFile(path.resolve(__dirname + '/client.js'))
     })
     this.app.get('/show_jimaku', (req: express.Request, res: express.Response) => {
-      let jimaku = decodeURIComponent(req.query.jimaku)
-      if (req.query.style) {
-        let style = JSON.parse(req.query.style)
+      let jimaku = req.query.jimaku
+      let style = req.query.style
+      try {
+        jimaku = decodeURIComponent(req.query.jimaku)
+        if (style) style = JSON.parse(req.query.style)
         this.showJimaku(jimaku, style)
-      } else {
-        this.showJimaku(jimaku)
+        res.end(jimaku)
+      } catch (error) {
+        // conform to RFC 7807
+        let title, detail = error.message
+        if (error.message.match(/URI malformed/)) {
+          title = 'URI malformed'
+          detail = 'You must do URL encoding jimaku of the queries with UTF-8'
+        } else if (error.message.match(/^Unexpected token .+ in JSON/)) {
+          title = 'JSON format error'
+          detail = 'You must specify JSON format in style of the queries'
+        }
+        res.status(500)
+        res.header({ 'Content-Type':'application/problem+json' })
+        res.end(JSON.stringify({
+          type: req.url,
+          title: title,
+          status: 500,
+          detail: detail
+        }))
       }
-      res.end()
     })
     this.app.get('/hide_jimaku', (req: express.Request, res: express.Response) => {
       this.hideJimaku()
