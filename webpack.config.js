@@ -6,10 +6,13 @@ const server  = {
   target: 'node',
   mode: 'production',
   devtool: 'inline-source-map',
-  entry: './src/server/index.ts',
+  entry: {
+    server: './src/server/index.ts',
+    jimaku_server_test: './src/test/jimaku_server_test.ts',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'server.js',
+    filename: '[name].js',
   },
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
