@@ -5,8 +5,8 @@ export default class JimaluClient{
   private io: SocketIOClient.Socket
   private _jimakuElement: HTMLElement | null
 
-  constructor(url: string) {
-    this.client = new io.Manager(url)
+  constructor() {
+    this.client = new io.Manager(location.href)
     this.io = this.client.socket(location.pathname)
     this.io.on('connect', () => {
       console.log('connect')

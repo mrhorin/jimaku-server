@@ -1,4 +1,5 @@
 import JimakuClient from 'client/jimaku_client'
 
-const client: JimakuClient = new JimakuClient(`http://localhost:3030`)
+const client = new JimakuClient()
+client.jimakuElement = document.getElementById('jimaku')
 client.connect()
