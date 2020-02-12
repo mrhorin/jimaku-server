@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A server to feed subtitles",
   "main": "./lib/main.js",
+  "types": "./src/@types/index.d.ts",
   "license": "MIT",
   "author": "mrhorin",
   "scripts": {
