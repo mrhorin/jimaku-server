@@ -41,7 +41,7 @@ const client  = {
   target: 'web',
   mode: 'production',
   devtool: 'inline-source-map',
-  entry: './src/client/index.ts',
+  entry: './src/client/client.ts',
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: 'client.js',
