@@ -7,12 +7,13 @@ const server  = {
   mode: 'production',
   devtool: 'inline-source-map',
   entry: {
-    server: './src/server/index.ts',
-    jimaku_server_test: './src/test/jimaku_server_test.ts',
+    'dist/main': './src/server/index.ts',
+    'dist/jimaku_server_test': './src/test/jimaku_server_test.ts',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname),
     filename: '[name].js',
+    libraryTarget: 'commonjs2'
   },
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
@@ -64,4 +65,3 @@ const client  = {
 };
 
 module.exports = [server, client]
-

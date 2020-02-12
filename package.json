@@ -2,7 +2,7 @@
   "name": "jimaku-server",
   "version": "1.0.0",
   "description": "A server to feed subtitles",
-  "main": "server.js",
+  "main": "./dist/main.js",
   "license": "MIT",
   "author": "mrhorin",
   "scripts": {
