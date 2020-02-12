@@ -7,8 +7,8 @@ const server  = {
   mode: 'production',
   devtool: 'inline-source-map',
   entry: {
-    'dist/main': './src/server/index.ts',
-    'dist/jimaku_server_test': './src/test/jimaku_server_test.ts',
+    'lib/main': './src/server/index.ts',
+    'lib/jimaku_server_test': './src/test/jimaku_server_test.ts',
   },
   output: {
     path: path.resolve(__dirname),
@@ -43,7 +43,7 @@ const client  = {
   devtool: 'inline-source-map',
   entry: './src/client/index.ts',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'lib'),
     filename: 'client.js',
   },
   resolve: {
