@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const nodeExternals = require('webpack-node-externals');
@@ -7,6 +8,7 @@ const server  = {
   mode: 'production',
   devtool: 'inline-source-map',
   entry: {
+    'bin/server': './src/server/server.ts',
     'lib/main': './src/server/index.ts',
     'lib/jimaku_server_test': './src/test/jimaku_server_test.ts',
   },
@@ -64,4 +66,37 @@ const client  = {
   }
 };
 
-module.exports = [server, client]
+const bin  = {
+  target: 'node',
+  mode: 'production',
+  devtool: 'inline-source-map',
+  entry: './src/server/server.ts',
+  output: {
+    path: path.resolve(__dirname, 'bin'),
+    filename: 'server.js',
+    libraryTarget: 'commonjs2'
+  },
+  resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    extensions: ['.ts', '.js'],
+  },
+  node: {
+    __dirname: false,
+  },
+  plugins: [
+    new WebpackNotifierPlugin(),
+    new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true }),
+  ],
+  externals: [nodeExternals()],
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      }
+    ]
+  }
+};
+
+module.exports = [server, client, bin]

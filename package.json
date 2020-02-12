@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "A server to feed subtitles",
   "main": "./lib/main.js",
+  "bin": {
+    "jimaku-server": "bin/server.js"
+  },
   "types": "./src/@types/index.d.ts",
   "license": "MIT",
   "author": "mrhorin",
   "scripts": {
     "watch": "webpack --watch --mode=development",
     "build": "webpack --mode=production",
-    "start": "node ./lib/server.js",
+    "server": "node ./bin/server.js",
     "list": "npm ls --depth=0",
     "test": "mocha ./lib/jimaku_server_test.js"
   },

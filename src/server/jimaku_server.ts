@@ -26,7 +26,7 @@ export default class JimakuServer{
       `)
     })
     this.app.get('/client.js', (req: express.Request, res: express.Response) => {
-      res.sendFile(path.resolve(__dirname + '/client.js'))
+      res.sendFile(path.resolve(__dirname + '/../lib/client.js'))
     })
     this.app.get('/show_jimaku', (req: express.Request, res: express.Response) => {
       let jimaku = req.query.jimaku
@@ -69,8 +69,9 @@ export default class JimakuServer{
     return this.server.listening
   }
 
-  public listen(port: number) {
+  public listen(port: number = 3000) {
     this.server = this.server.listen(port)
+    console.log(`\u001b[32mhttp://localhost:${port}\u001b[0m`)
   }
 
   public close() {
