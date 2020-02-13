@@ -8,7 +8,7 @@ export default class JimakuServer{
   private server: http.Server
   private io: io.Server
 
-  constructor(option?: { css?: string, js?: string, html?: string }) {
+  constructor(option?: { css?: string, js?: string, html?: string, elementId?: string }) {
     this.app = express()
     this.server = new http.Server(this.app)
     this.io = io(this.server)
@@ -33,6 +33,8 @@ export default class JimakuServer{
       if (option && option.html) {
         res.sendFile(option.html)
       } else {
+        let id = 'jimaku'
+        if (option && option.elementId) id = option.elementId
         res.send(`
           <html>
             <head>
@@ -40,7 +42,7 @@ export default class JimakuServer{
               <link rel="stylesheet" type="text/css" href="/style.css">
             </head>
             <body>
-              <div id="jimaku">Jimaku Server</div>
+              <div id="${id}">Jimaku Server</div>
             </body>
             <script src="/client.js"></script>
           <html>

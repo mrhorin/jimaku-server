@@ -9,7 +9,7 @@ declare class JimakuServer{
   server: http.Server
   io: io.Server
 
-  constructor(option?: { css?: string, js?: string, html?: string });
+  constructor(option?: { css?: string, js?: string, html?: string, elementId?: string });
 
   get isListening(): boolean
 
