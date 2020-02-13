@@ -1,5 +1,6 @@
 # jimaku-server
 [![Actions Status](https://github.com/mrhorin/jimaku-server/workflows/Node.js%20CI/badge.svg)](https://github.com/mrhorin/jimaku-server/actions)
+[![npm version](https://badge.fury.io/js/jimaku-server.svg)](https://badge.fury.io/js/jimaku-server)
 
 You can show a comment on the screen in your live stream through browser source, such as OBS.
 
@@ -52,7 +53,7 @@ curl -X GET 'http://localhost:3000/show_jimaku?jimaku=Hello%20Jimaku&style=%7B%2
 ```
 The style parameter above means like this.
 ```javascript
-{"colr":"red","font-size":"35px"}
+{"color":"red","font-size":"35px"}
 ```
 The comment is shown until you request `/hide_jimaku` as well.
 ```bash
