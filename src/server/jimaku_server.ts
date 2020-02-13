@@ -8,25 +8,44 @@ export default class JimakuServer{
   private server: http.Server
   private io: io.Server
 
-  constructor() {
+  constructor(option?: { css?: string, js?: string, html?: string }) {
     this.app = express()
     this.server = new http.Server(this.app)
     this.io = io(this.server)
-    this.app.get('/', (req: express.Request, res: express.Response) => {
-      res.send(`
-        <html>
-          <head>
-            <meta charset="UTF-8" />
-          </head>
-          <body>
-            <div id="jimaku">Jimaku Server</div>
-          </body>
-          <script src="/client.js"></script>
-        <html>
-      `)
+    // style.css
+    this.app.get('/style.css', (req: express.Request, res: express.Response) => {
+      if (option && option.css) {
+        res.sendFile(option.css)
+      } else {
+        res.send(`body{padding:0px; margin:0px; min-width:100%;}`)
+      }
     })
+    // client.js
     this.app.get('/client.js', (req: express.Request, res: express.Response) => {
-      res.sendFile(path.resolve(__dirname + '/../lib/client.js'))
+      if (option && option.js) {
+        res.sendFile(option.js)
+      } else {
+        res.sendFile(path.resolve(__dirname + '/../lib/client.js'))
+      }
+    })
+    // index.html;
+    this.app.get('/', (req: express.Request, res: express.Response) => {
+      if (option && option.html) {
+        res.sendFile(option.html)
+      } else {
+        res.send(`
+          <html>
+            <head>
+              <meta charset="UTF-8" />
+              <link rel="stylesheet" type="text/css" href="/style.css">
+            </head>
+            <body>
+              <div id="jimaku">Jimaku Server</div>
+            </body>
+            <script src="/client.js"></script>
+          <html>
+        `)
+      }
     })
     this.app.get('/show_jimaku', (req: express.Request, res: express.Response) => {
       let jimaku = req.query.jimaku
