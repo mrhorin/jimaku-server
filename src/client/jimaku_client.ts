@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-export default class JimaluClient{
+export default class JimakuClient{
   private client: SocketIOClient.Manager
   private io: SocketIOClient.Socket
   private _jimakuElement: HTMLElement | null
