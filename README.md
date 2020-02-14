@@ -60,3 +60,18 @@ The comment is shown until you request `/hide_jimaku` as well.
 ```bash
 curl -X GET 'http://localhost:3000/hide_jimaku'
 ```
+
+## JimakuServer API
+
+### GET /show_jimaku
+`/show_jimaku` can show a text on the browser.
+
+#### Parameters
+
+|Name|Required|Formats|Description|
+|---|---|---|---|
+|jimaku|Yes|string|Specify text which you want show on the browser
+|style|optional|json|Specify CSS which you want apply to text
+
+### GET /hide_jimaku
+`/hide_jimaku` can hide a text on the browser.
