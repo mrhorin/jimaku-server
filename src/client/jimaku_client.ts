@@ -33,7 +33,7 @@ export default class JimakuClient{
   }
 
   public showJimaku(jimaku: string, style: { [key: number]: string } = {}) {
-    if (this.jimakuElement?.innerHTML) {
+    if (this.jimakuElement) {
       let css: string = ""
       for (let key in style) { css += `${key}: ${style[key]};` }
       this.jimakuElement.setAttribute('style', css)
