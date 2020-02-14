@@ -2,7 +2,7 @@
 [![Actions Status](https://github.com/mrhorin/jimaku-server/workflows/Node.js%20CI/badge.svg)](https://github.com/mrhorin/jimaku-server/actions)
 [![npm version](https://badge.fury.io/js/jimaku-server.svg)](https://badge.fury.io/js/jimaku-server)
 
-You can show a comment on the screen in your live stream through browser source, such as OBS.
+jimaku-server can show a comment on the screen in your live stream through browser source of a streaming encoder, such as OBS.
 
 ## Installation
 Install with npm.
@@ -12,7 +12,7 @@ npm install jimaku-server
 
 ## Usage
 
-### How to run with JavsScript
+### How to run with node.js
 Run the server.
 ```javascript
 import JimakuServer from 'jimaku-server'
@@ -23,7 +23,7 @@ server.listen(3000)
 Open `http://localhost:3000` with a web browser, such as brower source of OBS.
 <img width="600" alt="obs" src="https://user-images.githubusercontent.com/6502717/74432826-91712000-4ea2-11ea-8351-9244be3eb081.png">
 
-You can show a comment on the browser with shouJimaku method. The comment is shown until you execute hideJimaku method.
+Execute showJimaku() method to show a comment on the browser. Optionally, You can specify css in the second argument. The comment is shown on the screen until you execute hideJimaku() method or the next showJimaku method.
 ```javascript
 import JimakuServer from 'jimaku-server'
 
@@ -31,6 +31,7 @@ let server = new JimakuServer()
 server.listen(3000)
 
 server.showJimaku('Hello Jimaku')
+server.showJimaku('Bye', {"color": "blue", "font-size": "30px"})
 
 setTimeout(()=>{
   server.hideJimaku()

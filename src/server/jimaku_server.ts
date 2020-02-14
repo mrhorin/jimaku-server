@@ -42,7 +42,7 @@ export default class JimakuServer{
               <link rel="stylesheet" type="text/css" href="/style.css">
             </head>
             <body>
-              <div id="${id}">Jimaku Server</div>
+              <div id="${id}"></div>
             </body>
             <script src="/client.js"></script>
           <html>
