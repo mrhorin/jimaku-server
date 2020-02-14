@@ -8,12 +8,11 @@ const server  = {
   mode: 'production',
   devtool: 'inline-source-map',
   entry: {
-    'bin/server': './src/server/server.ts',
-    'lib/main': './src/server/index.ts',
-    'lib/jimaku_server_test': './src/test/jimaku_server_test.ts',
+    'main': './src/server/index.ts',
+    'jimaku_server_test': './src/test/jimaku_server_test.ts',
   },
   output: {
-    path: path.resolve(__dirname),
+    path: path.resolve(__dirname, 'lib'),
     filename: '[name].js',
     libraryTarget: 'commonjs2'
   },
