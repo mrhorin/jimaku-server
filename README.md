@@ -30,13 +30,14 @@ import JimakuServer from 'jimaku-server'
 let server = new JimakuServer()
 server.listen(3000)
 
-server.showJimaku('Hello Jimaku')
-server.showJimaku('Bye', {"color": "blue", "font-size": "30px"})
+server.showJimaku('Hello Jimaku', {"color":"blue", "font-size":"50px", "-webkit-text-stroke":"2px #fff")
+server.showJimaku('Bye')
 
 setTimeout(()=>{
   server.hideJimaku()
 }, 10000)
 ```
+<img width="600" alt="obs" src="https://user-images.githubusercontent.com/6502717/74584448-cea9ef00-5015-11ea-9912-6af2422b6bb1.png">
 
 ### How to run with CLI
 You can use `jimaku-server` command after installing jimaku-server with npm.
