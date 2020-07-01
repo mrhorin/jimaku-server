@@ -50,12 +50,16 @@ export default class JimakuServer{
       }
     })
     this.app.get('/show_jimaku', (req: express.Request, res: express.Response) => {
-      let jimaku = req.query.jimaku
-      let style = req.query.style
+      let jimaku:string
+      let style: { [key: string]: string }
       try {
-        jimaku = decodeURIComponent(req.query.jimaku)
-        if (style) style = JSON.parse(req.query.style)
-        this.showJimaku(jimaku, style)
+        jimaku = decodeURIComponent(String(req.query.jimaku))
+        if (req.query.style) {
+          style = JSON.parse(String(req.query.style))
+          this.showJimaku(jimaku, style)
+        } else{
+          this.showJimaku(jimaku)
+        }
         res.end(jimaku)
       } catch (error) {
         // conform to RFC 7807
